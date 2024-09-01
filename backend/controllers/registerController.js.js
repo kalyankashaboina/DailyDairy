@@ -6,7 +6,6 @@ dotenv.config()
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 
-
 const JWT_SECRET =process.env.JWT_SECRET ;
 
 const registerUser = async (req, res) => {

@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginForm />} /> {/* Default route to Login */}
+        <Route path="/" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       </Routes>
