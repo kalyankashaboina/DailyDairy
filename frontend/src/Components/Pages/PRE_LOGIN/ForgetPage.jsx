@@ -22,6 +22,7 @@ const ForgotPasswordPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  console.log("data from redux==>",status,error)
   const handleRequestReset = async (e) => {
     e.preventDefault();
     dispatch(requestPasswordReset({ Email: formData.Email }))

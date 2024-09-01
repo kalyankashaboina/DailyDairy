@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Paper, Link } from '@mui/material';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../Redux/apis';
 import { Link as RouterLink } from 'react-router-dom'; // Import Link from react-router-dom
@@ -60,6 +59,17 @@ const LoginForm = () => {
                         <Link component={RouterLink} to="/forgot-password">
                             Forgot Password?
                         </Link>
+                    </Typography>
+                    <Typography align="center" sx={{ mt: 2 }}>
+                        <Button
+                            component={RouterLink}
+                            to="/register"
+                            fullWidth
+                            variant="outlined"
+                            color="primary"
+                        >
+                            Sign Up
+                        </Button>
                     </Typography>
                 </form>
             </Paper>

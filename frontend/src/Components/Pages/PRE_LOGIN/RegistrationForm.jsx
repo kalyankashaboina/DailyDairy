@@ -1,7 +1,7 @@
 // RegistrationForm.js
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Paper } from '@mui/material';
-import axios from 'axios';
+
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../Redux/apis';
 
