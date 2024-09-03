@@ -9,7 +9,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-app.use(cors({ origin: 'http://localhost:3000' }));
+
+const origin1='https://daily-dairy-local.vercel.app'
+// const origin1='http://localhost:3000' 
+
+app.use(cors({ origin:origin1}));
+
 
 app.use(express.json());
 
