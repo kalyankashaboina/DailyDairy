@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Container, Typography, Paper, Alert } from '@mui/material';
+import { TextField, Button, Container, Typography, Paper, Box, Alert } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestPasswordReset, verifyOtp, resetPassword, resendOtp } from '../../../Redux/apis';
@@ -22,7 +22,6 @@ const ForgotPasswordPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  console.log("data from redux==>",status,error)
   const handleRequestReset = async (e) => {
     e.preventDefault();
     dispatch(requestPasswordReset({ Email: formData.Email }))
@@ -74,100 +73,150 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper elevation={3} sx={{ padding: 3, backgroundColor: '#f4f4f4' }}>
-        <Typography variant="h5" align="center" sx={{ mb: 2 }}>
-          Forgot Password
-        </Typography>
-        {/* Display a single message based on the message state */}
-        {message.text && <Alert severity={message.type} sx={{ mb: 2 }}>{message.text}</Alert>}
-        
-        {step === 'request' && (
-          <form onSubmit={handleRequestReset} noValidate>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="Email Address"
-              name="Email"
-              type="email"
-              value={formData.Email}
-              onChange={handleChange}
-              sx={{ mb: 2 }}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ mb: 2 }}
-            >
-              Request Password Reset
-            </Button>
-            <Link to="/">Back to Login</Link>
-          </form>
-        )}
-        {step === 'verify' && (
-          <form onSubmit={handleVerifyOtp} noValidate>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="OTP"
-              name="OTP"
-              value={formData.OTP}
-              onChange={handleChange}
-              sx={{ mb: 2 }}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ mb: 2 }}
-            >
-              Verify OTP
-            </Button>
-            <Button
-              type="button"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-              onClick={handleResendOtp}
-              sx={{ mb: 2 }}
-            >
-              Resend OTP
-            </Button>
-            <Link to="#" onClick={() => setStep('request')}>Back to Request</Link>
-          </form>
-        )}
-        {step === 'reset' && (
-          <form onSubmit={handleResetPassword} noValidate>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              label="New Password"
-              name="NewPassword"
-              type="password"
-              value={formData.NewPassword}
-              onChange={handleChange}
-              sx={{ mb: 2 }}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              sx={{ mb: 2 }}
-            >
-              Reset Password
-            </Button>
-            <Link to="#" onClick={() => setStep('verify')}>Back to Verify OTP</Link>
-          </form>
-        )}
-      </Paper>
-    </Container>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #FF6F61 0%, #FFB88C 100%)', // Background gradient
+        padding: 2,
+      }}
+    >
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Paper
+          elevation={6}
+          sx={{
+            padding: 3,
+            borderRadius: 3,
+            textAlign: 'center',
+            backgroundColor: '#fff',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+            width: '100%',
+            maxWidth: '400px',
+            background: 'linear-gradient(135deg, #FFEBE0 0%, #FFF9F2 100%)', // Soft gradient background for Paper
+          }}
+        >
+          <Typography variant="h5" align="center" sx={{ mb: 2, color: '#FF6F61' }}>
+            Forgot Password
+          </Typography>
+          {message.text && <Alert severity={message.type} sx={{ mb: 2 }}>{message.text}</Alert>}
+          
+          {step === 'request' && (
+            <form onSubmit={handleRequestReset} noValidate>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Email Address"
+                name="Email"
+                type="email"
+                value={formData.Email}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                sx={{
+                  mb: 2,
+                  fontWeight: 'bold',
+                  backgroundColor: '#FF6F61',
+                  '&:hover': { backgroundColor: '#E55544' },
+                }}
+              >
+                Request Password Reset
+              </Button>
+              <Link to="/" style={{ color: '#FF6F61' }}>Back to Login</Link>
+            </form>
+          )}
+          {step === 'verify' && (
+            <form onSubmit={handleVerifyOtp} noValidate>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="OTP"
+                name="OTP"
+                value={formData.OTP}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                sx={{
+                  mb: 2,
+                  fontWeight: 'bold',
+                  backgroundColor: '#FF6F61',
+                  '&:hover': { backgroundColor: '#E55544' },
+                }}
+              >
+                Verify OTP
+              </Button>
+              <Button
+                type="button"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={handleResendOtp}
+                sx={{
+                  mb: 2,
+                  color: '#FF6F61',
+                  borderColor: '#FF6F61',
+                  '&:hover': { borderColor: '#E55544' },
+                }}
+              >
+                Resend OTP
+              </Button>
+              <Link to="#" onClick={() => setStep('request')} style={{ color: '#FF6F61' }}>Back to Request</Link>
+            </form>
+          )}
+          {step === 'reset' && (
+            <form onSubmit={handleResetPassword} noValidate>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="New Password"
+                name="NewPassword"
+                type="password"
+                value={formData.NewPassword}
+                onChange={handleChange}
+                sx={{ mb: 2 }}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                sx={{
+                  mb: 2,
+                  fontWeight: 'bold',
+                  backgroundColor: '#FF6F61',
+                  '&:hover': { backgroundColor: '#E55544' },
+                }}
+              >
+                Reset Password
+              </Button>
+              <Link to="#" onClick={() => setStep('verify')} style={{ color: '#FF6F61' }}>Back to Verify OTP</Link>
+            </form>
+          )}
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 
